@@ -1,0 +1,26 @@
+#!/bin/sh
+export ETSDL_SDL_LIB="libSDL.so"
+export SDL_AUDIODRIVER="alsa"
+
+#	Fill in the location of your libeth32.so and pk3 file in ETH32_DIR
+export ETH32_DIR="/"
+
+
+#	Fill in the location of your Enemy Territory Installation
+export ETH32_ET="/"
+
+#	If you don't want to use auth, set this to true.
+#	Note that you will not be able to communicate with your fellow cheaters
+#	Nor can you see where they are, or use IRC.
+#	If you just dont want to show in tracker, you can also select anonymous.
+export ETH32_NO_AUTH="true"
+
+#	you can ignore the rest :)
+#
+#
+
+export LD_PRELOAD="$ETH32_DIR/libeth32_public.so"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.
+cd $ETH32_ET
+exec ./et.x86 "$@"
+unset LD_PRELOAD
